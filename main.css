@@ -1,0 +1,126 @@
+@font-face {
+    font-family: 'delogs';
+    src: url('https://raw.githubusercontent.com/Aionia-Epochi/website/main/delogs.ttf');
+}
+
+@font-face {
+    font-family: 'vergilia';
+    src: url('https://raw.githubusercontent.com/Aionia-Epochi/website/main/vergilia.ttf');
+}
+
+@font-face {
+    font-family: 'balenyser';
+    src: url('https://raw.githubusercontent.com/Aionia-Epochi/website/main/balenyser.otf');
+}
+
+body {
+  font-family: balenyser;
+  margin:0px;
+  padding:0px;
+  background-color:black;
+  color:white;
+}
+
+.topnav {
+  overflow: hidden;
+  background-color: rgba(0,0,0,0);
+  z-index:1;
+  position:absolute;
+  padding:0.5em 0.5em;
+}
+
+.topnav a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 1em 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+  
+}
+
+.topnav a.active {
+  color: white;
+  padding:0em;
+}
+
+#head {
+  margin:0px;
+  padding-top:1em;
+  background-size:cover;
+  height:50vh;
+  color:white;
+  top, left, right:0px;
+  z-index:0;
+  position:relative;
+  display:block;
+  width:100vw;
+  background-attachment:fixed;
+  font-family:delogs;
+}
+#footer {
+  background-color:black;
+  color:white;
+  padding:1em;
+}
+
+.content {
+  padding:2em 5em;
+}
+
+.warn {
+  margin: 1em;
+  border:2px red dashed;
+  background-color:rgba(255,0,0,0.3);
+  border-radius:20px;
+  padding:1em;
+  color:pink;
+  font-weight:900;
+  align-content:center;
+}
+
+.shadow
+{
+background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,1));
+height:100%;
+}
+
+h2 {
+color:rgba(255,255,100,1);
+}
+
+.tag {
+background-color:white;
+color:black;
+border-radius:0.5em;
+margin-left: 1em;
+margin-right: 1em;
+padding: 0.25em;
+}
+
+.subheading {
+font-size: 0.5em;
+font-family: balenyser;
+}
+
+#donation_methods td {
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top:1vh;
+    padding-bottom: 1vh;
+}
+#donation_methods td {
+    max-width:30vw;
+    justify-content: center;
+}
+
+#donation_methods td img {
+    width: 25vw;
+    border:2px solid white;
+    border-radius: 20px;
+}
