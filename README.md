@@ -1,2 +1,1 @@
 # xbais.net
-Personal Website
