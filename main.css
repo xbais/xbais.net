@@ -21,7 +21,7 @@ body {
   color:black;
   margin: 0;
   overflow: hidden; /* Prevent scrollbars */
-  z-index: 1;
+  z-index: 2;
 }
 
 .topnav {
