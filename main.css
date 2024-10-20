@@ -21,7 +21,7 @@ body {
   color:black;
   margin: 0;
   overflow: hidden; /* Prevent scrollbars */
-  position: relative;
+  z-index: 1;
 }
 
 .topnav {
@@ -151,4 +151,11 @@ canvas {
     left: 0;
     pointer-events: none; /* Prevent interactions with canvas */
     z-index: -1;
+}
+
+.image-blurred-edge {
+  background-image: url('https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png');
+  width:fit-content;
+  /* you need to match the shadow color to your background or image border for the desired effect*/
+  box-shadow: 0 0 8px 8px white inset;
 }

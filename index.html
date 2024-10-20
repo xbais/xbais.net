@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aakash Singh Bais</title>
    	<link rel="stylesheet" type="text/css" href="./main.css" />
@@ -41,9 +41,10 @@
     // Call the function to include HTML
     w3IncludeHTML();
 </script>
+    <title>Aakash Singh Bais</title>
 </head>
 <body>
-  <div w3-include-html="topnav.html"></div> 
+    <div w3-include-html="topnav.html"></div> 
     <canvas id="backgroundCanvas"></canvas>
 
     <script>
@@ -55,6 +56,15 @@
 
         const shapes = [];
 
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
         function createRandomShape() {
             const shape = {
                 x: Math.random() * canvas.width,
@@ -63,41 +73,18 @@
                 rotation: Math.random() * Math.PI * 2,
                 type: Math.random() < 0.33 ? 'rectangle' : (Math.random() < 0.5 ? 'triangle' : 'square'),
                 speed: (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1), // Random speed
-                direction: Math.random() * Math.PI * 2 // Random direction
+                direction: Math.random() * Math.PI * 2, // Random direction
+                color: getRandomColor() // Fixed color for the shape
             };
             shapes.push(shape);
-        }
-
-        function drawShapeOld(shape) {
-            ctx.save();
-            ctx.translate(shape.x, shape.y);
-            ctx.rotate(shape.rotation);
-            ctx.fillStyle = rgba(0,0,255,1);
-
-            if (shape.type === 'rectangle') {
-                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size / 2);
-            } else if (shape.type === 'triangle') {
-                ctx.beginPath();
-                ctx.moveTo(0, -shape.size / 2);
-                ctx.lineTo(-shape.size / 2, shape.size / 2);
-                ctx.lineTo(shape.size / 2, shape.size / 2);
-                ctx.closePath();
-                ctx.fill();
-            } else { // square
-                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
-            }
-
-            ctx.restore();
         }
 
         function drawShape(shape) {
             ctx.save();
             ctx.translate(shape.x, shape.y);
             ctx.rotate(shape.rotation);
-
-            // Generate a random opacity between 0.2 and 0.6
-            const opacity = 0.3 //Math.random() * (0.6 - 0.2) + 0.2; // New opacity calculation
-            ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`; // Set the fill style with varying opacity
+            ctx.fillStyle = `${shape.color}A0`; // Add opacity
+            ctx.globalAlpha = 0.3; // Fixed opacity
 
             if (shape.type === 'rectangle') {
                 ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size / 2);
@@ -168,7 +155,6 @@
         draw();
         setInterval(update, 100);
     </script>
-    
     <center>
     
   <span class="subheading"><h1>Aakash Singh Bais</h1></span><br><center><span class="subheading">Developer, AI Researcher</span></center>
@@ -182,7 +168,7 @@
     .portrait {max-height:25vh;}
     </style>
     <center>
-    <img class="portrait invertible" src="https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png"/></center><br>
+    <div class="portrait invertible image-blurred-edge"><img src="https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png" style="visibility: hidden;"></div></center><br>
     <h2>About Me:</h2>
     <p>I am currently a Research Fellow at the Data Science Department of Indian Institute of Science Education and Research Bhopal. I am working on LiDAR Point Cloud and 3D deep learning based neural networks.  Neural networks are quite fascinating to me. It is interesting to try to probe these networks to understand how they function, and to make new and better ones, making them more efficient at tasks. Generative networks are specifically of interest to me. It is awe inspiring, at how over the years creativity has come into the reach of computing devices. I am also part-time blogger, musician and artist. </p>
 <hr>
