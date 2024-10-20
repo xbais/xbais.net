@@ -19,6 +19,9 @@ body {
   padding:0px;
   background-color:white;
   color:black;
+  margin: 0;
+  overflow: hidden; /* Prevent scrollbars */
+  position: relative;
 }
 
 .topnav {
@@ -132,3 +135,20 @@ font-family: balenyser;
 h2 {
   color:rgba(0,0,0,1);
   }
+
+.invertable {
+  display: inline-block;
+  padding: 20px;
+  margin: 50px;
+  background: lightgray;
+  font-size: 18px;
+  transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+}
+
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    pointer-events: none; /* Prevent interactions with canvas */
+    z-index: -1;
+}
