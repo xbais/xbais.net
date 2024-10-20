@@ -26,7 +26,7 @@ body {
 .topnav {
   overflow: hidden;
   background-color: rgba(0,0,0,0);
-  z-index:1;
+  z-index:2;
   position:absolute;
   padding:0.5em 0.5em;
   top: 0;
@@ -127,9 +127,11 @@ font-family: balenyser;
 .content {
   font-size: 1em;
   padding:2em 5em;
-  z-index: 2;
+  z-index: 1;
   position:absolute;
   top: 0;
+  overflow-y: scroll
+  width:100%;
 }
 
 h2 {
@@ -149,7 +151,7 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    /*pointer-events: none; /* Prevent interactions with canvas */
+    pointer-events: none; /* Prevent interactions with canvas */
     z-index: -1;
     width: 100vw;
     height:100vh;
