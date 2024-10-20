@@ -1,17 +1,168 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<link rel="stylesheet" type="text/css" href="./main.css" />
-<base href="" target="">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://cdn.counter.dev/script.js" data-id="f50de920-cd2a-4c7e-a599-0e17e661a271" data-utcoffset="6"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Rotating Shapes</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            position: relative;
+        }
+
+        .invertable {
+            display: inline-block;
+            padding: 20px;
+            margin: 50px;
+            background: lightgray;
+            font-size: 18px;
+            transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
+        }
+        
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none; /* Prevent interactions with canvas */
+            z-index: -1;
+        }
+    </style>
+   	<link rel="stylesheet" type="text/css" href="./main.css" />
+	<base href="" target="">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<script src="https://cdn.counter.dev/script.js" data-id="f50de920-cd2a-4c7e-a599-0e17e661a271" data-utcoffset="6"></script>
 </head>
-<script src="https://www.w3schools.com/lib/w3data.js"></script>
-  <body>
+<body>
+    <canvas id="backgroundCanvas"></canvas>
+
+    <script>
+        const canvas = document.getElementById('backgroundCanvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const shapes = [];
+
+        function createRandomShape() {
+            const shape = {
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 50 + 20,
+                rotation: Math.random() * Math.PI * 2,
+                type: Math.random() < 0.33 ? 'rectangle' : (Math.random() < 0.5 ? 'triangle' : 'square'),
+                speed: (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1), // Random speed
+                direction: Math.random() * Math.PI * 2 // Random direction
+            };
+            shapes.push(shape);
+        }
+
+        function drawShapeOld(shape) {
+            ctx.save();
+            ctx.translate(shape.x, shape.y);
+            ctx.rotate(shape.rotation);
+            ctx.fillStyle = rgba(0,0,255,1);
+
+            if (shape.type === 'rectangle') {
+                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size / 2);
+            } else if (shape.type === 'triangle') {
+                ctx.beginPath();
+                ctx.moveTo(0, -shape.size / 2);
+                ctx.lineTo(-shape.size / 2, shape.size / 2);
+                ctx.lineTo(shape.size / 2, shape.size / 2);
+                ctx.closePath();
+                ctx.fill();
+            } else { // square
+                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
+            }
+
+            ctx.restore();
+        }
+
+        function drawShape(shape) {
+            ctx.save();
+            ctx.translate(shape.x, shape.y);
+            ctx.rotate(shape.rotation);
+
+            // Generate a random opacity between 0.2 and 0.6
+            const opacity = 0.3 //Math.random() * (0.6 - 0.2) + 0.2; // New opacity calculation
+            ctx.fillStyle = `rgba(0, 0, 0, ${opacity})`; // Set the fill style with varying opacity
+
+            if (shape.type === 'rectangle') {
+                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size / 2);
+            } else if (shape.type === 'triangle') {
+                ctx.beginPath();
+                ctx.moveTo(0, -shape.size / 2);
+                ctx.lineTo(-shape.size / 2, shape.size / 2);
+                ctx.lineTo(shape.size / 2, shape.size / 2);
+                ctx.closePath();
+                ctx.fill();
+            } else { // square
+                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
+            }
+
+            ctx.restore();
+        }
+
+        function updateShapes() {
+            shapes.forEach(shape => {
+                // Update position based on speed and direction
+                shape.x += Math.cos(shape.direction) * shape.speed;
+                shape.y += Math.sin(shape.direction) * shape.speed;
+
+                // Bounce off the walls
+                if (shape.x - shape.size / 2 < 0 || shape.x + shape.size / 2 > canvas.width) {
+                    shape.direction = Math.PI - shape.direction; // Reflect horizontally
+                }
+                if (shape.y - shape.size / 2 < 0 || shape.y + shape.size / 2 > canvas.height) {
+                    shape.direction = -shape.direction; // Reflect vertically
+                }
+
+                // Update rotation
+                shape.rotation += shape.speed * 0.01; // Slow rotation based on speed
+            });
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            shapes.forEach(shape => drawShape(shape));
+            requestAnimationFrame(draw);
+        }
+
+        function checkCollision(element) {
+            const rect = element.getBoundingClientRect();
+            shapes.forEach(shape => {
+                const distance = Math.hypot(shape.x - (rect.left + rect.width / 2), shape.y - (rect.top + rect.height / 2));
+                if (distance < shape.size + rect.width / 2) {
+                    element.style.backgroundColor = 'black';
+                    element.style.color = 'white';
+                } else {
+                    element.style.backgroundColor = 'lightgray';
+                    element.style.color = 'black';
+                }
+            });
+        }
+
+        function update() {
+            updateShapes(); // Update positions and check for bouncing.
+            const invertableElements = document.querySelectorAll('.invertable');
+            invertableElements.forEach(el => checkCollision(el));
+        }
+
+        // Create multiple shapes initially
+        for (let i = 0; i < 50; i++) {
+            createRandomShape();
+        }
+
+        draw();
+        setInterval(update, 100);
+    </script>
+    
+    <center>
 	<div w3-include-html="topnav.html"></div> 
     
-    <div id="head" style="background-image:url(https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/earth.jpg);height:30vh;"><div class="shadow">
-      <center><table><tr><td style="font-size:5em;color:rgba(255,255,255,0.5);padding-right:5vw;padding-top:10vh;">Aakash Singh Bais<br><center><span class="subheading">Developer, AI Researcher</span></center></td><td></tr></table>
+  <span class="subheading"><h1>Aakash Singh Bais</h1></span><br><center><span class="subheading">Developer, AI Researcher</span></center>
       </center>
     </div></div>
 
@@ -22,21 +173,15 @@
     .portrait {max-height:25vh;}
     </style>
     <center>
-    <img class="portrait" src="https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png"/></center><br>
-    <p><h2>About Me:</h2>
-I am currently a Research Fellow at the Data Science Department of Indian Institute of Science Education and Research Bhopal. I am currently working on LiDAR Point Cloud and 3D Deep Learning networks.  Neural networks are quite fascinating to me. It is interesting to try to probe these networks to understand how they function, and to make new ones that can add on to the already existing ones, making them more efficient at tasks. Generative networks are specifically of interest to me. It is awe inspiring, at how over the years creativity has come into the reach of computing devices.
-These technologies are fairly new and have the potential to touch the lives of billions of people over internet. Thus it is also important to assess the possible impacts they can have on the wider population.  It seems that in the current age, software and digital computer technology is going to be the most disruptive developments for the human-kind.</p>
+    <img class="portrait invertible" src="https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png"/></center><br>
+    <h2>About Me:</h2>
+    <p>I am currently a Research Fellow at the Data Science Department of Indian Institute of Science Education and Research Bhopal. I am working on LiDAR Point Cloud and 3D deep learning based neural networks.  Neural networks are quite fascinating to me. It is interesting to try to probe these networks to understand how they function, and to make new and better ones, making them more efficient at tasks. Generative networks are specifically of interest to me. It is awe inspiring, at how over the years creativity has come into the reach of computing devices. I am also part-time blogger, musician and artist. </p>
 <hr>
-<p>Thus, we at Aiónia Epochí aim to assess the effects that technology can have on the population among other parameters like global warming and climate change.</p>
-<p><b>Climate Change</b> is another area where immense amount of work is being done, and much more needs to be done. A specific area where global efforts seem to be lacking is the proper documentation of global biodiversity. With every passing day, the global environmental condition seems to be worsening. A worsening environment automatically means we are losing species biodiversity at an accelerating pace. On the other hand, the current trends of misinformation and 2-minute social media news pills seem to be killing the global awareness on important issues. It is much like humanity is sleep-walking into doom, taking dopamine shots to prevent any possible reality checks. Thus, Aiónia Epochí aims at working on narrowing this information gap, while providing reliable fact-checked information to everyone in a palatable form which can be enjoyed and worked on.</p>
-<p><b>Hopelessness</b> is what creeps in when the situations get tense and critical. Hence, as part of Aiónia Epochí, we are specially interested in trying to formulate ways to inspire work in the direction of climate change and bettering the future of humanity while instilling hope into the minds of the global common-man. So that, the brevity of the situation itself doesn't start inhibiting the progress being made by us in these directions.</p>
-<p>“Hope is important because it can make the present moment less difficult to bear. If we believe that tomorrow will be better, we can bear a hardship today.” – Thich Nhat Hanh</p>
-<hr>
-<p><h2>Scientific Publications</h2>
+<h2>Scientific Publications</h2>
 <ol>
     <li>2021 :  A new distribution record of mason wasp Pison punctifrons Shuckard, 1838 (Hymenoptera: Sphecidae: Larrinae) from Noida, Uttar Pradesh, India  [Link] DOI : https://doi.org/10.11609/jott.6428.13.5.18227-18236</li>
     <li>2022 (communicated) : Performance Analysis of Subsampled LiDAR Point Clouds Using Deep Learning Based Semantic Segmentation</li>
-</ol> 
+</ol>
     </div>
     
     <div w3-include-html="footer.html"></div>
@@ -44,5 +189,6 @@ These technologies are fairly new and have the potential to touch the lives of b
         <script>
 w3IncludeHTML();
 </script>
-  </body>
+</center>
+</body>
 </html>

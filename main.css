@@ -14,11 +14,11 @@
 }
 
 body {
-  font-family: balenyser;
+  font-family: 'serif';
   margin:0px;
   padding:0px;
-  background-color:black;
-  color:white;
+  background-color:white;
+  color:black;
 }
 
 .topnav {
@@ -31,7 +31,7 @@ body {
 
 .topnav a {
   float: left;
-  color: white;
+  color: black;
   text-align: center;
   padding: 1em 16px;
   text-decoration: none;
@@ -45,7 +45,7 @@ body {
 }
 
 .topnav a.active {
-  color: white;
+  color: grey;
   padding:0em;
 }
 
@@ -54,23 +54,20 @@ body {
   padding-top:1em;
   background-size:cover;
   height:50vh;
-  color:white;
+  color:black;
   top, left, right:0px;
   z-index:0;
   position:relative;
   display:block;
   width:100vw;
   background-attachment:fixed;
-  font-family:delogs;
-}
-#footer {
-  background-color:black;
-  color:white;
-  padding:1em;
+  font-family:'delogs';
 }
 
-.content {
-  padding:2em 5em;
+#footer {
+  background-color:white;
+  color:black;
+  padding:1em;
 }
 
 .warn {
@@ -86,12 +83,8 @@ body {
 
 .shadow
 {
-background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.2), rgba(0,0,0,1));
+background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0), rgba(0,0,0,0));
 height:100%;
-}
-
-h2 {
-color:rgba(255,255,100,1);
 }
 
 .tag {
@@ -104,7 +97,12 @@ padding: 0.25em;
 }
 
 .subheading {
-font-size: 0.5em;
+font-size: 1.5em;
+font-family: balenyser;
+}
+
+.heading {
+font-size: 1em;
 font-family: balenyser;
 }
 
@@ -124,3 +122,12 @@ font-family: balenyser;
     border:2px solid white;
     border-radius: 20px;
 }
+
+.content {
+  font-size: 1em;
+  padding:2em 5em;
+}
+
+h2 {
+  color:rgba(0,0,0,1);
+  }
