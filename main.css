@@ -23,6 +23,7 @@ body {
   overflow-y: scroll; /* Enable scroll */
   -ms-overflow-style: none; /* For Internet Explorer and Edge */
   scrollbar-width: none; /* For Firefox */
+  width: 100%;
 }
 
 .topnav {
