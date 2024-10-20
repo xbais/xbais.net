@@ -149,7 +149,7 @@ canvas {
     position: fixed;
     top: 0;
     left: 0;
-    pointer-events: none; /* Prevent interactions with canvas */
+    /*pointer-events: none; /* Prevent interactions with canvas */
     z-index: -1;
     width: 100vw;
     height:100vh;
