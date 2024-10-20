@@ -21,8 +21,6 @@ body {
   color:black;
   margin: 0;
   overflow: hidden; /* Prevent scrollbars */
-  position:absolute;
-  top: 0;
 }
 
 .topnav {
@@ -130,6 +128,8 @@ font-family: balenyser;
   font-size: 1em;
   padding:2em 5em;
   z-index: 2;
+  position:absolute;
+  top: 0;
 }
 
 h2 {
