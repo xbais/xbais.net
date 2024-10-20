@@ -60,7 +60,6 @@ body {
   color:black;
   top, left, right:0px;
   z-index:0;
-  position:relative;
   display:block;
   width:100vw;
   font-family:'delogs';
@@ -150,6 +149,8 @@ canvas {
     left: 0;
     pointer-events: none; /* Prevent interactions with canvas */
     z-index: -1;
+    width: 100vw;
+    height:100vh;
 }
 
 .image-blurred-edge {
