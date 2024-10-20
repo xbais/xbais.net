@@ -20,7 +20,9 @@ body {
   background-color:white;
   color:black;
   margin: 0;
-  overflow: hidden; /* Prevent scrollbars */
+  overflow-y: scroll; /* Enable scroll */
+  -ms-overflow-style: none; /* For Internet Explorer and Edge */
+  scrollbar-width: none; /* For Firefox */
 }
 
 .topnav {
@@ -165,3 +167,8 @@ canvas {
 }
 
 .portrait {max-height:25vh;}
+
+
+body::-webkit-scrollbar {
+  display: none; /* Hide scrollbars for Chrome, Safari and Opera */
+}
