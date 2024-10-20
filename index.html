@@ -32,8 +32,6 @@
 	<base href="" target="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<script src="https://cdn.counter.dev/script.js" data-id="f50de920-cd2a-4c7e-a599-0e17e661a271" data-utcoffset="6"></script>
-</head>
-<body>
   <script>
     // Define the w3IncludeHTML function
     function w3IncludeHTML() {
@@ -67,6 +65,9 @@
     // Call the function to include HTML
     w3IncludeHTML();
 </script>
+</head>
+<body>
+  <div w3-include-html="topnav.html"></div> 
     <canvas id="backgroundCanvas"></canvas>
 
     <script>
@@ -193,7 +194,6 @@
     </script>
     
     <center>
-	<div w3-include-html="topnav.html"></div> 
     
   <span class="subheading"><h1>Aakash Singh Bais</h1></span><br><center><span class="subheading">Developer, AI Researcher</span></center>
       </center>
@@ -217,11 +217,12 @@
 </ol>
     </div>
     
-    <div w3-include-html="footer.html"></div>
+    
 
         <script>
 w3IncludeHTML();
 </script>
 </center>
+<div w3-include-html="footer.html"></div>
 </body>
 </html>
