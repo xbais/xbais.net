@@ -177,9 +177,6 @@ body::-webkit-scrollbar {
 }
 
 .navbar-logo {
-    height:2em;
-    width:2em;
-    float: right;
-    right: 2em;
     position: absolute;
+    right: 0.5em;
 }
