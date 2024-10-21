@@ -175,3 +175,9 @@ canvas {
 body::-webkit-scrollbar {
   display: none; /* Hide scrollbars for Chrome, Safari and Opera */
 }
+
+.navbar-logo {
+    height:2em;
+    width:2em;
+    float: right;
+}
