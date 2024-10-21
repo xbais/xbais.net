@@ -158,128 +158,6 @@
   </script>
     <div w3-include-html="topnav.html"></div> 
     <canvas id="backgroundCanvas"></canvas>
-<<<<<<< HEAD
-    <center>
-  <span class="subheading"><h1>Aakash Singh Bais</h1></span><br><span class="subheading">Developer, AI Researcher</span>
-      </center>
-
-    <div w3-include-html="messages.html"></div>     
-    
-    <div class="content">
-
-=======
-
-    <script>
-        const canvas = document.getElementById('backgroundCanvas');
-        const ctx = canvas.getContext('2d');
-
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-
-        const shapes = [];
-
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function createRandomShape() {
-            const shape = {
-                x: Math.random() * canvas.width,
-                y: Math.random() * canvas.height,
-                size: Math.random() * 50 + 20,
-                rotation: Math.random() * Math.PI * 2,
-                type: Math.random() < 0.33 ? 'rectangle' : (Math.random() < 0.5 ? 'triangle' : 'square'),
-                speed: (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1), // Random speed
-                direction: Math.random() * Math.PI * 2, // Random direction
-                color: getRandomColor() // Fixed color for the shape
-            };
-            shapes.push(shape);
-        }
-
-        function drawShape(shape) {
-            ctx.save();
-            ctx.translate(shape.x, shape.y);
-            ctx.rotate(shape.rotation);
-            ctx.fillStyle = `${shape.color}A0`; // Add opacity
-            ctx.globalAlpha = 0.3; // Fixed opacity
-
-            if (shape.type === 'rectangle') {
-                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size / 2);
-            } else if (shape.type === 'triangle') {
-                ctx.beginPath();
-                ctx.moveTo(0, -shape.size / 2);
-                ctx.lineTo(-shape.size / 2, shape.size / 2);
-                ctx.lineTo(shape.size / 2, shape.size / 2);
-                ctx.closePath();
-                ctx.fill();
-            } else { // square
-                ctx.fillRect(-shape.size / 2, -shape.size / 2, shape.size, shape.size);
-            }
-
-            ctx.restore();
-        }
-
-        function updateShapes() {
-            shapes.forEach(shape => {
-                // Update position based on speed and direction
-                shape.x += Math.cos(shape.direction) * shape.speed;
-                shape.y += Math.sin(shape.direction) * shape.speed;
-
-                // Bounce off the walls
-                if (shape.x - shape.size / 2 < 0 || shape.x + shape.size / 2 > canvas.width) {
-                    shape.direction = Math.PI - shape.direction; // Reflect horizontally
-                }
-                if (shape.y - shape.size / 2 < 0 || shape.y + shape.size / 2 > canvas.height) {
-                    shape.direction = -shape.direction; // Reflect vertically
-                }
-
-                // Update rotation
-                shape.rotation += shape.speed * 0.01; // Slow rotation based on speed
-            });
-        }
-
-        function draw() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            shapes.forEach(shape => drawShape(shape));
-            requestAnimationFrame(draw);
-        }
-
-        function checkCollision(element) {
-            const rect = element.getBoundingClientRect();
-            shapes.forEach(shape => {
-                const distance = Math.hypot(shape.x - (rect.left + rect.width / 2), shape.y - (rect.top + rect.height / 2));
-                if (distance < shape.size + rect.width / 2) {
-                    element.style.backgroundColor = 'black';
-                    element.style.color = 'white';
-                } else {
-                    element.style.backgroundColor = 'lightgray';
-                    element.style.color = 'black';
-                }
-            });
-        }
-
-        function update() {
-            updateShapes(); // Update positions and check for bouncing.
-            const invertableElements = document.querySelectorAll('.invertable');
-            invertableElements.forEach(el => checkCollision(el));
-        }
-
-        // Create multiple shapes initially
-        for (let i = 0; i < 50; i++) {
-            createRandomShape();
-        }
-
-        draw();
-        setInterval(update, 100);
-    </script>
-
-<div class="content">
->>>>>>> c3dfde00ccf5c9e5622d1878760c8713ed9ca2a1
     <center>
     
   <div class="subheading"><h1>Aakash Singh Bais</h1><hr><h3>Developer, AI Researcher & Artist</h3></div>
@@ -297,16 +175,9 @@
 </ol>
 <div w3-include-html="footer.html"></div>
     </div>
-<<<<<<< HEAD
   
   </center>
   <div w3-include-html="footer.html"></div>
-=======
-    
-  <script>
-    w3IncludeHTML();
-  </script>
->>>>>>> c3dfde00ccf5c9e5622d1878760c8713ed9ca2a1
   
 </body>
 </html>
