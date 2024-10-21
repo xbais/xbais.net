@@ -17,7 +17,7 @@ body {
   font-family: 'serif';
   margin:0px;
   padding:0px;
-  background-color:white;
+  background-color:rgba(0,0,0,0);
   color:black;
   margin: 0;
   overflow-y: scroll; /* Enable scroll */
@@ -69,7 +69,7 @@ body {
 }
 
 #footer {
-  background-color:white;
+  background-color:rgba(0,0,0,0);
   color:black;
   padding:1em;
 }
@@ -145,7 +145,7 @@ h2 {
   display: inline-block;
   padding: 20px;
   margin: 50px;
-  background: lightgray;
+  background: rgba(211, 211, 211, 0);
   font-size: 18px;
   transition: background-color 0.3s, color 0.3s; /* Smooth transitions */
 }
