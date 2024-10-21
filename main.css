@@ -133,8 +133,8 @@ font-family: balenyser;
   z-index: 1;
   position:absolute;
   top: 0;
-  overflow-y: scroll
-  width:100%;
+  overflow-y: scroll;
+  width:100vw;
 }
 
 h2 {
