@@ -17,7 +17,6 @@ body {
   font-family: 'serif';
   margin:0px;
   padding:0px;
-  background-color:white;
   color:black;
   margin: 0;
   overflow: hidden; /* Prevent scrollbars */
@@ -66,7 +65,6 @@ body {
 }
 
 #footer {
-  background-color:white;
   color:black;
   padding:1em;
 }
@@ -157,7 +155,8 @@ canvas {
 
 .image-blurred-edge {
   background-image: url('https://raw.githubusercontent.com/Aionia-Epochi/website/main/_resources/people/aakash.png');
-  width:fit-content;
   /* you need to match the shadow color to your background or image border for the desired effect*/
   box-shadow: 0 0 8px 8px white inset;
 }
+
+.portrait {max-height:25vh;}
