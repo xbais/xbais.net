@@ -181,4 +181,5 @@ body::-webkit-scrollbar {
     width:2em;
     float: right;
     right: 2em;
+    position: absolute;
 }
